@@ -12,7 +12,7 @@ object CoronaVirusDataDownloader extends App {
   val recoveredUrl = s"${baseUrl}time_series_19-covid-Recovered.csv"
 
   val confirmedStats = getStats(confirmedUrl)
-  val usStats = confirmedStats._2.filter(_.countryRegion.equalsIgnoreCase("us")
+  val usStats = confirmedStats._2.filter(_.countryRegion.equalsIgnoreCase("us"))
   val dates = confirmedStats._1
 
   val usStatsValues: Seq[Seq[Float]] = usStats.map(_.values)
