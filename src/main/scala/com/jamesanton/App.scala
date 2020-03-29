@@ -10,7 +10,13 @@ object App extends App{
     "Germany" -> "Germany",
     "United Kingdom" -> "United Kingdom"
   )
-  val stats = downloader.getStats(StatType.CONFIRMED)
+  val segment = StatType.CONFIRMED.getUrlSegment
+  val date = "comment this"
+  //  val date = "0325"
+
+  val url = s"https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/archived_data/" +
+    s"archived_time_series/time_series_19-covid-${segment}_archived_${date}.csv"
+  val stats = downloader.getStats(url)
 
   // Filter the stats list for only countries in the mapper
   val statsForCountriesInMapper = stats match {
@@ -41,7 +47,7 @@ object App extends App{
     }
   }
 
-  // Filter the stats list for only countries in the mapper, and divides by population
+  // Divides by population
   val statsPerPopulation = groupedByCountryRegion match {
     case (dates, countryStats) =>
       (dates, countryStats.map {

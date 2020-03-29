@@ -7,8 +7,8 @@ import com.opencsv.CSVReader
 import scala.io.Source
 
 class CSSEGISandDataDownloader {
-  def getStats(statType: StatType): (Seq[Date], Seq[CountryStat]) = {
-    val reader = new CSVReader(Source.fromURL(statType.url).bufferedReader())
+  def getStats(url: String): (Seq[Date], Seq[CountryStat]) = {
+    val reader = new CSVReader(Source.fromURL(url).bufferedReader())
     val rows = reader.readAll().toArray()
     reader.close()
     val dateFormat = new java.text.SimpleDateFormat("MM/dd/yy")
